@@ -54,7 +54,6 @@ void Kontrol::bolunmeKontrol()
 
         orgGec = orgGec->sonraki;
         organDGec = NULL;
-        //cout << endl;
     }
 
     orgGec = organizma->ilkSistemD;
