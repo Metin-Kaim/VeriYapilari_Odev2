@@ -5,7 +5,4 @@ Hucre::Hucre()
     veri = 0;
 }
 
-Hucre::~Hucre()
-{
-    //delete this;
-}
+Hucre::~Hucre(){}

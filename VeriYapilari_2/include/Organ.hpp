@@ -11,10 +11,12 @@ public:
     ~Organ();
 
     void agacaEkle(bool);
+    void agacSil();
 
     ODokuDugum *ilkOrganD;
 
     Dugum *getKokAdres();
+
     BagilAgac *agac;
 
 private:

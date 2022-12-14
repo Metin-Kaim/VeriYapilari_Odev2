@@ -38,7 +38,6 @@ int main()
 
     ifstream dosya;
     dosya.open("./veri.txt");
-
     while (!dosya.eof())
     {
         string satir;
@@ -52,13 +51,6 @@ int main()
             continue;
         }
         satirSayisiKontrol++;
-
-        // if (satirSayisiKontrol == 101)
-        // {
-        //     organizma->sistemOlustur();
-        //     a++;
-        //     satirSayisiKontrol = 1;
-        // }
 
         for (int i = 0; i < satir.length(); i++) // bir satirda kac adet sayi oldugunu hesaplama
         {
@@ -77,15 +69,14 @@ int main()
         Doku *doku = new Doku(sayiAdedi); //
 
         DHucreDugum *gec = doku->ilkHucreD;
-        int sayac=0;
+        int sayac = 0;
         for (int i = 0; i < satir.length(); i++) // okunan satirdaki sayilari "sayilar" adli diziye aktarma
         {
             string islem = satir.substr(i, 1);
             if (islem == " ")
             { // boşluk ise
-            doku->dizi[sayac].veri=stoi(satir.substr(sayiBaslangic, i - sayiBaslangic));
-            sayac++;
-                //gec->hucreAdresi->veri = stoi(satir.substr(sayiBaslangic, i - sayiBaslangic));
+                doku->dizi[sayac].veri = stoi(satir.substr(sayiBaslangic, i - sayiBaslangic));
+                sayac++;
                 gec = gec->sonraki;
                 sayiBaslangic = i + 1;
             }
@@ -93,19 +84,17 @@ int main()
             {
                 if (i == (satir.length()) - 1) // satir sonu
                 {
-            doku->dizi[sayac].veri=stoi(satir.substr(sayiBaslangic, i - sayiBaslangic+1));
-            sayac++;
-                    // gec->hucreAdresi->veri = stoi(satir.substr(sayiBaslangic, i - sayiBaslangic + 1));
+                    doku->dizi[sayac].veri = stoi(satir.substr(sayiBaslangic, i - sayiBaslangic + 1));
+                    sayac++;
                     gec = gec->sonraki;
                     sayiBaslangic = i + 1;
                 }
             }
         } // ilgili satır için okuma işlemi bitti
-
+        
         if (organSayaci == 100 && organFlag == true)
         {
             organizma->sistemOlustur();
-            //cout << endl;
             organSayaci = 0;
             organFlag = false;
         }
@@ -143,7 +132,6 @@ int main()
         if (dokuDugumuSayaci == 20)
         {
             organDGec->organAdres->agacaEkle(false);
-            // cout << organDGec->organAdres->kokAdres->veri<<" ";
             organFlag = true;
             dokuDugumuSayaci = 0;
         }
@@ -152,11 +140,11 @@ int main()
 
     OSistemDugum *osd = organizma->ilkSistemD;
     
-    while(osd!=0)
-    {SOrganDugum *sod=0;
+    while (osd != 0)
+    {
+        SOrganDugum *sod = 0;
         for (int i = 0; i < 100; i++)
         {
-            //cout<<"a";
             if (sod == NULL)
             {
                 sod = osd->sistemAdres->ilkOrganD;
@@ -165,12 +153,11 @@ int main()
                 sod = sod->sonraki;
 
             sod->organAdres->agac->avlDengesi(sod->organAdres->agac->kok);
-            
         }
         cout << endl;
-        osd=osd->sonraki;
+        osd = osd->sonraki;
     }
-    
+
     cout << "\n\n";
     string myString;
     do
@@ -182,6 +169,7 @@ int main()
     
     Kontrol *k = new Kontrol(organizma);
     k->bolunmeKontrol();
+    delete k;
     delete organizma;
     cout << "\n-----------------------------\n\nPROGRAM BITTI...\n\n-----------------------------" << endl;
 }

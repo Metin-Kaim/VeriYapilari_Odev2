@@ -7,7 +7,6 @@ class Doku
 public:
     Doku(int);
     ~Doku();
-    Hucre *getHucreVeriDizisi();
     Hucre *dizi;
     DHucreDugum *ilkHucreD;
     int hucreSayiAdedi;

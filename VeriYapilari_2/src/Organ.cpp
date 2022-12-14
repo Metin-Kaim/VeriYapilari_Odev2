@@ -38,14 +38,16 @@ Organ::~Organ()
         ilkOrganD = ilkOrganD->sonraki;
         delete sil;
     }
+    agacSil();
 }
 
 void Organ::agacaEkle(bool sadeceAVL)
 {
-    BagilAgac *yeniAgac = new BagilAgac();
-    agac = yeniAgac;
+    agac = new BagilAgac();
+
     ODokuDugum *gec = ilkOrganD;
     RadixSort *rs = new RadixSort();
+    
     while (gec != 0)
     {
         // Hucre *dizi = gec->dokuAdres->getHucreVeriDizisi();
@@ -53,14 +55,20 @@ void Organ::agacaEkle(bool sadeceAVL)
         rs->radixSort(gec->dokuAdres->dizi, gec->dokuAdres->hucreSayiAdedi);
         int ortSayi2 = ceil(gec->dokuAdres->hucreSayiAdedi / 2);
         int ortSayi = gec->dokuAdres->dizi[ortSayi2].veri;
-        yeniAgac->ekle(gec->dokuAdres, ortSayi);
+        agac->ekle(gec->dokuAdres, ortSayi);
         gec = gec->sonraki;
     }
+    delete rs;
 
-    kokAdres = yeniAgac->kok;
-    if (sadeceAVL)
-        yeniAgac->avlDengesi(kokAdres);
-    // cout<<"-";
+    // kokAdres = yeniAgac->kok;
+    //  if (sadeceAVL)
+    //      yeniAgac->avlDengesi(kokAdres);
+    //  // cout<<"-";
+}
+
+void Organ::agacSil()
+{
+    delete agac;
 }
 
 Dugum *Organ::getKokAdres()

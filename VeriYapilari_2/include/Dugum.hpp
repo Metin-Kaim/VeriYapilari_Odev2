@@ -5,6 +5,7 @@ class Dugum
 {
 public:
     Dugum(Doku*, int);
+    ~Dugum();
     Doku *doku;
     int veri;
     Dugum* sol;

@@ -12,6 +12,8 @@ Kontrol::Kontrol(Organizma *organizma)
     sayac = -1;
 }
 
+Kontrol::~Kontrol(){}
+
 void Kontrol::bolunmeKontrol()
 {
     cout << setw(25) << ""
@@ -29,38 +31,50 @@ void Kontrol::bolunmeKontrol()
             else
                 organDGec = organDGec->sonraki;
 
-            if (organDGec->organAdres->getKokAdres()->veri % 50 == 0) // mutasyona ugrayan ikili arama agaci
+            if (organDGec->organAdres->agac->kok->veri % 50 == 0) // mutasyona ugrayan ikili arama agaci
             {
-                // cout<<endl<<organDGec->organAdres->getKokAdres()->veri<<endl;
                 sayac = -1;
-                postOrder(organDGec->organAdres->getKokAdres()); // dokuDizisi dizisi ilgili organın doku nesneleriyle dolu
+                postOrder(organDGec->organAdres->agac->kok); // dokuDizisi dizisi ilgili organın doku nesneleriyle dolu
+                organDGec->organAdres->agacSil();//eski agaci sil
                 for (int j = 0; j < 20; j++)
                 {
-                    //dokudizisi[j]->getHucreVeriDizisi();
                     for (int k = 0; k < dokudizisi[j]->hucreSayiAdedi; k++)
                     {
                         if (dokudizisi[j]->dizi[k].veri % 2 == 0)
                         {
                             dokudizisi[j]->dizi[k].veri = dokudizisi[j]->dizi[k].veri / 2;
-                    //cout << dokudizisi[j]->dizi[k].veri<<" ";
-
                         }
                     }
-                    // cout<<hucreDizisi[0].veri<<" "<<hucreDizisi[1].veri<<" "<<hucreDizisi[2].veri<<endl;
                 }
 
-                organDGec->organAdres->agacaEkle(true);
-                // agac silme
-            }
-            else
-            {
-                organDGec->organAdres->agac->avlDengesi(organDGec->organAdres->getKokAdres());
-            }
+                organDGec->organAdres->agacaEkle(false);
+                delete[] dokudizisi;
+             }
         }
 
         orgGec = orgGec->sonraki;
         organDGec = NULL;
+        //cout << endl;
+    }
+
+    orgGec = organizma->ilkSistemD;
+
+    while (orgGec != 0)
+    {
+        SOrganDugum *sod = 0;
+        for (int i = 0; i < 100; i++)
+        {
+            if (sod == NULL)
+            {
+                sod = orgGec->sistemAdres->ilkOrganD;
+            }
+            else
+                sod = sod->sonraki;
+
+            sod->organAdres->agac->avlDengesi(sod->organAdres->agac->kok);
+        }
         cout << endl;
+        orgGec = orgGec->sonraki;
     }
 }
 

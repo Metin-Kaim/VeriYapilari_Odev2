@@ -36,19 +36,5 @@ Doku::~Doku()
         ilkHucreD=ilkHucreD->sonraki;
         delete sil;
     }
-    
-}
-
-Hucre *Doku::getHucreVeriDizisi()
-{
-    //Hucre *dizi = new Hucre[hucreSayiAdedi];
-    // DHucreDugum *gec = ilkHucreD;
-    // int sayac = 0;
-    // while (gec != 0)
-    // {
-    //     dizi[sayac] = *(gec->hucreAdresi);
-    //     sayac++;
-    //     gec = gec->sonraki;
-    // }
-    return dizi;
+    delete[] dizi;
 }

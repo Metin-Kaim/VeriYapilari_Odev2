@@ -5,6 +5,7 @@ class RadixSort
 {
 public:
     void radixSort(Hucre*,int);
+    ~RadixSort();
 private:
     int getMax(Hucre*,int);
 };

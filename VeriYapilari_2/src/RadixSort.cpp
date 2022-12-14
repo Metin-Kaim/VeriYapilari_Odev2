@@ -1,6 +1,9 @@
 #include <iostream>
 #include "Queue.hpp"
 #include "RadixSort.hpp"
+#include <iostream>
+
+RadixSort::~RadixSort(){}
 
 // Function to get the maximum value in the array
 int RadixSort::getMax(Hucre *arr, int n)

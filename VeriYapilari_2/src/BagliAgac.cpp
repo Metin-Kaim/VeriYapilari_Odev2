@@ -8,6 +8,11 @@ BagilAgac::BagilAgac()
     kok = 0;
 }
 
+BagilAgac::~BagilAgac()
+{
+    delete kok;
+}
+
 void BagilAgac::ekle(Doku *doku, int ortSayi)
 {
     ekle(doku, ortSayi, kok);
