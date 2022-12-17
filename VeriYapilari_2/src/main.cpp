@@ -1,11 +1,13 @@
 /*
 * @file             main.cpp
-* @description      Verilen "veriler.txt" dosyasındaki verileri bağlı liste yapısıyla tutup,
-                    o bağlı listeyi de çift yönlü başka bir bağlı liste ile kontrol ederek
-                    istenen işlemleri yerine getirme.
+* @description      Verilen "veri.txt" adlı dosaydaki verileri okuyarak bunları hücre yapılarında tutmak
+                    ve bu hücre yapılarını doku yapılarında, bu doku yapılarını organ yapılarında,
+                    organ yapılarını da sistem yapılarında ve son olarak sistemleri de bir adet organizma yapısnda tutmak.
+                    Ardından bu verileri ağaç yapılarına ekleyerek ekrana belli bir şekil çıkarmak ve enter tuşuna basıldığında
+                    Bu şeklin belli şartlar dahilinde mutasyona uğramasını sağlamak.                                           
 * @course           1. Öğretim A grubu
-* @assignment       1. Ödev
-* @date             21.11.2022
+* @assignment       2. Ödev
+* @date             17.12.2022
 * @author           Metin Kaim -- metin.kaim@ogr.sakarya.edu.tr
 */
 
@@ -169,7 +171,7 @@ int main()
     
     Kontrol *k = new Kontrol(organizma);
     k->bolunmeKontrol();
+    cout<<endl<<endl;
     delete k;
     delete organizma;
-    cout << "\n-----------------------------\n\nPROGRAM BITTI...\n\n-----------------------------" << endl;
 }

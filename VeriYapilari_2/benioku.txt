@@ -1,0 +1,4 @@
+Uygulama çalıştığında ilk önce organizmadaki tüm yapılar dosyadaki verilere göre gerekli işlemleri görüp ağaç yapılarına aktarılıyor.
+Ardından tüm ağaçlar avl ağacı dengesine göre kontrol edilerek şekil ekrana bastırılıyor.
+Bu yüzden uygulama çalıştırıldığında şekil yazdırılmadan evvel "veri.txt" dosyasının büyüklüğüne bağlı olarak belli bir süre (ortalama 3-4 saniye) bekleme süresi bulunmaktadır.
+Bilginize...
