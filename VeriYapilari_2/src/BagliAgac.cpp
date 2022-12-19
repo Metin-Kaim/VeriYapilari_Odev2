@@ -4,7 +4,7 @@
                     ve bu hücre yapılarını doku yapılarında, bu doku yapılarını organ yapılarında,
                     organ yapılarını da sistem yapılarında ve son olarak sistemleri de bir adet organizma yapısnda tutmak.
                     Ardından bu verileri ağaç yapılarına ekleyerek ekrana belli bir şekil çıkarmak ve enter tuşuna basıldığında
-                    Bu şeklin belli şartlar dahilinde mutasyona uğramasını sağlamak.                                           
+                    Bu şeklin belli şartlar dahilinde mutasyona uğramasını sağlamak.
 * @course           1. Öğretim A grubu
 * @assignment       2. Ödev
 * @date             17.12.2022
@@ -13,31 +13,32 @@
 
 #include "BagilAgac.hpp"
 #include <iostream>
-#include <iomanip>
 
 using namespace std;
-BagilAgac::BagilAgac()
+BagilAgac::BagilAgac() // ağaç oluştuğunda kökü sıfırlama
 {
     kok = 0;
 }
 
-BagilAgac::~BagilAgac()
+BagilAgac::~BagilAgac() // BağılAğacı ve kök düğümü silme
 {
     delete kok;
 }
 
-void BagilAgac::ekle(Doku *doku, int ortSayi)
+void BagilAgac::ekle(Doku *doku, int ortSayi) // Dışarıya açık olan ekleme fonksiyonu // Private olan ekleme fonksiyonunu çağırıyor
 {
     ekle(doku, ortSayi, kok);
 }
 
-void BagilAgac::ekle(Doku *doku, int ortSayi, Dugum *aktifDugum)
+void BagilAgac::ekle(Doku *doku, int ortSayi, Dugum *aktifDugum) // Private olan ekleme fonksiyonu
 {
-    if (kok == 0)
+    if (kok == 0) // ağaçta hiç düğüm yoksa
     {
         kok = new Dugum(doku, ortSayi);
         return;
     }
+
+    // ağaçta düğüm varsa
 
     if (aktifDugum->veri >= ortSayi) // sola ekleme
     {
@@ -65,7 +66,7 @@ int BagilAgac::yukseklikBulma(Dugum *aktifDugum)
     return -1;
 }
 
-void BagilAgac::avlDengesi(Dugum *aktifDugum)
+void BagilAgac::avlDengesi(Dugum *aktifDugum) // Ağacı tarayıp avl dengesine göre konsola değer yazdırma
 {
     if (abs(yukseklikBulma(aktifDugum->sag) - yukseklikBulma(aktifDugum->sol)) > 1)
     {

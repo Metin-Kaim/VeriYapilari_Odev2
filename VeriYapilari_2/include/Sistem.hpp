@@ -14,6 +14,7 @@
 #ifndef Sistem_hpp
 #define Sistem_hpp
 #include "SOrganDugum.hpp"
+#include "Organ.hpp"
 
 class Sistem
 {

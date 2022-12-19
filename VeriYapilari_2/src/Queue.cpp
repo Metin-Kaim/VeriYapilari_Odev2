@@ -11,12 +11,8 @@
 * @author           Metin Kaim -- metin.kaim@ogr.sakarya.edu.tr
 */
 
-#include <iostream>
 #include "Queue.hpp"
 
-using namespace std;
-
-// Yapıcı fonksiyon
 Kuyruk::Kuyruk()
 {
     ilk = 0;
@@ -50,11 +46,10 @@ void Kuyruk::cikar()
     }
 }
 
-int Kuyruk::getir()
+int Kuyruk::getir() // ilk veriyi getirme
 {
     if (veriSayisi != 0)
         return veriler[ilk];
-    throw out_of_range("Kuyruk Bos");
 }
 
 bool Kuyruk::bosmu()

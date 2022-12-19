@@ -4,7 +4,7 @@
                     ve bu hücre yapılarını doku yapılarında, bu doku yapılarını organ yapılarında,
                     organ yapılarını da sistem yapılarında ve son olarak sistemleri de bir adet organizma yapısnda tutmak.
                     Ardından bu verileri ağaç yapılarına ekleyerek ekrana belli bir şekil çıkarmak ve enter tuşuna basıldığında
-                    Bu şeklin belli şartlar dahilinde mutasyona uğramasını sağlamak.                                           
+                    Bu şeklin belli şartlar dahilinde mutasyona uğramasını sağlamak.
 * @course           1. Öğretim A grubu
 * @assignment       2. Ödev
 * @date             17.12.2022
@@ -14,28 +14,28 @@
 #include "Kontrol.hpp"
 #include <iostream>
 #include <iomanip>
-#include "BagilAgac.hpp"
 
 using namespace std;
 
-Kontrol::Kontrol(Organizma *organizma)
+Kontrol::Kontrol(Organizma *organizma)//Organizmaya erişim
 {
     this->organizma = organizma;
     organDGec = NULL;
     sayac = -1;
 }
 
-Kontrol::~Kontrol(){}
+Kontrol::~Kontrol() {}
 
-void Kontrol::bolunmeKontrol()
+void Kontrol::bolunmeKontrol()//mutasyon kontrolü
 {
     cout << setw(25) << ""
          << "ORGANIZMA (MUTASYONA UGRADI)\n\n";
-    orgGec = organizma->ilkSistemD;
 
-    while (orgGec != 0)
+    orgGec = organizma->ilkSistemD; // organizmanın ilk OrganizmaSistemDüğümüne erişim
+
+    while (orgGec != 0)//Tüm OrganizmaSistemDüğümlerini (Sistemleri) gezecek
     {
-        for (int i = 0; i < 100; i++)
+        for (int i = 0; i < 100; i++)//her sistemin sahip olduğu organları gezecek
         {
             if (organDGec == NULL)
             {
@@ -48,7 +48,7 @@ void Kontrol::bolunmeKontrol()
             {
                 sayac = -1;
                 postOrder(organDGec->organAdres->agac->kok); // dokuDizisi dizisi ilgili organın doku nesneleriyle dolu
-                organDGec->organAdres->agacSil();//eski agaci sil
+                organDGec->organAdres->agacSil();            // eski agaci sil
                 for (int j = 0; j < 20; j++)
                 {
                     for (int k = 0; k < dokudizisi[j]->hucreSayiAdedi; k++)
@@ -60,18 +60,18 @@ void Kontrol::bolunmeKontrol()
                     }
                 }
 
-                organDGec->organAdres->agacaEkle(false);
-                delete[] dokudizisi;
-             }
+                organDGec->organAdres->agacaEkle(); //yeni ağaç oluşturup değerleri ekleme
+                delete[] dokudizisi; // oluşturulan dokuDizisini silme
+            }
         }
 
-        orgGec = orgGec->sonraki;
-        organDGec = NULL;
-    }
+        orgGec = orgGec->sonraki;//bir sonraki sisteme geçme
+        organDGec = NULL;//her yeni sisteme geçildiğinde organDüğümlerini tutan pointerı sıfırlama
+    }//while sonu // tüm organizma tarandı ve mutasyon işlemi tamamlandı
 
-    orgGec = organizma->ilkSistemD;
+    orgGec = organizma->ilkSistemD; // tekrardan ilk sisteme geçildi
 
-    while (orgGec != 0)
+    while (orgGec != 0)//organizmadaki tüm ağaçlar sırasıyla taranarak gerekli değerler ekrana yazdırılacak
     {
         SOrganDugum *sod = 0;
         for (int i = 0; i < 100; i++)
@@ -83,20 +83,20 @@ void Kontrol::bolunmeKontrol()
             else
                 sod = sod->sonraki;
 
-            sod->organAdres->agac->avlDengesi(sod->organAdres->agac->kok);
+            sod->organAdres->agac->avlDengesi(sod->organAdres->agac->kok);//ağaç tarama kısmı
         }
         cout << endl;
         orgGec = orgGec->sonraki;
     }
 }
 
-Doku **Kontrol::postOrder(Dugum *aktif)
+Doku **Kontrol::postOrder(Dugum *aktif)//ağacı postOrder olarak okuyup içindeki doku değerlerini diziye alma
 {
     if (aktif)
     {
         if (sayac == -1)
         {
-            dokudizisi = new Doku *[20];
+            dokudizisi = new Doku *[20]; // her organ 20 adet doku tuttuğu için 20 uzunluklu bir dizi oluşturma
             sayac++;
         }
         postOrder(aktif->sol);

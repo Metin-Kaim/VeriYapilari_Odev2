@@ -23,10 +23,10 @@ public:
     ~BagilAgac();
     void ekle(Doku *, int);
     Dugum *kok;
-    int yukseklikBulma(Dugum *);
     void avlDengesi(Dugum*);
 
 private:
+    int yukseklikBulma(Dugum *);
     void ekle(Doku *, int, Dugum *);
 };
 

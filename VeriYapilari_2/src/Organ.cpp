@@ -4,7 +4,7 @@
                     ve bu hücre yapılarını doku yapılarında, bu doku yapılarını organ yapılarında,
                     organ yapılarını da sistem yapılarında ve son olarak sistemleri de bir adet organizma yapısnda tutmak.
                     Ardından bu verileri ağaç yapılarına ekleyerek ekrana belli bir şekil çıkarmak ve enter tuşuna basıldığında
-                    Bu şeklin belli şartlar dahilinde mutasyona uğramasını sağlamak.                                           
+                    Bu şeklin belli şartlar dahilinde mutasyona uğramasını sağlamak.
 * @course           1. Öğretim A grubu
 * @assignment       2. Ödev
 * @date             17.12.2022
@@ -12,14 +12,10 @@
 */
 
 #include "Organ.hpp"
-#include "Doku.hpp"
-#include "iostream"
-#include "BagilAgac.hpp"
-#include "math.h"
-#include "RadixSort.hpp"
-using namespace std;
-Organ::Organ()
-{
+
+Organ::Organ() // Organ oluştuğunda otomatik olarak kendisine ve birbirlerine bağlı 20 adet OrganDokuDüğümü oluşturma
+{              // !!! Diğer kısımlarda olduğu gibi burada düğüme bağlı herhangi bir yapı (Doku) oluşturulmuyor.
+               // Doku yapısı ayrı olarak oluşturulup buraya eklenecek.
     kokAdres = 0;
     ilkOrganD = 0;
     agac = 0;
@@ -43,7 +39,7 @@ Organ::Organ()
     }
 }
 
-Organ::~Organ()
+Organ::~Organ() // Organ yapısını, içindeki ODokuDüğüm yapılarını ve sahip olduğu ağacı silme
 {
     for (int i = 0; i < 20; i++)
     {
@@ -54,37 +50,31 @@ Organ::~Organ()
     agacSil();
 }
 
-void Organ::agacaEkle(bool sadeceAVL)
+void Organ::agacaEkle() // Her bir organ için yeni bir ağaç yapısı oluşturup bu ağaca -gerekli işlemler yapıldıktan sonra-
+                                      // sahip olunan doku yapılarını ekleme
 {
     agac = new BagilAgac();
 
     ODokuDugum *gec = ilkOrganD;
     RadixSort *rs = new RadixSort();
-    
+
     while (gec != 0)
     {
-        // Hucre *dizi = gec->dokuAdres->getHucreVeriDizisi();
-        // cout<<dizi[0].veri<<" "<<dizi[1].veri<<endl;
-        rs->radixSort(gec->dokuAdres->dizi, gec->dokuAdres->hucreSayiAdedi);
-        int ortSayi2 = ceil(gec->dokuAdres->hucreSayiAdedi / 2);
-        int ortSayi = gec->dokuAdres->dizi[ortSayi2].veri;
-        agac->ekle(gec->dokuAdres, ortSayi);
+        rs->radixSort(gec->dokuAdres->dizi, gec->dokuAdres->hucreSayiAdedi); // organdaki doku dizisini hücre verilerine göre sıralama
+        int ortSayi2 = ceil(gec->dokuAdres->hucreSayiAdedi / 2);             // hücre uzunluğuna göre orta sayı indexini hesaplama
+        int ortSayi = gec->dokuAdres->dizi[ortSayi2].veri;                   // hücredeki ortanca sayıyı bulma
+        agac->ekle(gec->dokuAdres, ortSayi);                                 // ağaca ekleme işlemi
         gec = gec->sonraki;
     }
     delete rs;
-
-    // kokAdres = yeniAgac->kok;
-    //  if (sadeceAVL)
-    //      yeniAgac->avlDengesi(kokAdres);
-    //  // cout<<"-";
 }
 
-void Organ::agacSil()
+void Organ::agacSil() // ağacı silme
 {
     delete agac;
 }
 
-Dugum *Organ::getKokAdres()
-{
-    return kokAdres;
-}
+// Dugum *Organ::getKokAdres() // organın sahip olduğu ağacın kök adresini alma
+// {
+//     return kokAdres;
+// }

@@ -28,6 +28,7 @@ int main()
     system("CLS");
     cout << setw(35) << ""
          << "ORGANIZMA\n\n";
+
     int satirSayisiKontrol = 0;
     int organSayaci = 0;
     bool organFlag = false;
@@ -133,7 +134,7 @@ int main()
 
         if (dokuDugumuSayaci == 20)
         {
-            organDGec->organAdres->agacaEkle(false);
+            organDGec->organAdres->agacaEkle();
             organFlag = true;
             dokuDugumuSayaci = 0;
         }

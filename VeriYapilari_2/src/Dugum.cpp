@@ -15,7 +15,7 @@
 
 using namespace std;
 
-Dugum::Dugum(Doku *doku, int veri)
+Dugum::Dugum(Doku *doku, int veri) // Düğüme gerekli değerleri atama
 {
     this->doku = doku;
     this->veri = veri;
@@ -23,7 +23,7 @@ Dugum::Dugum(Doku *doku, int veri)
     sag = 0;
 }
 
-Dugum::~Dugum()
+Dugum::~Dugum() // Kendisini ve diğer alt düğümleri silme
 {
     if (sol)
         delete sol;
