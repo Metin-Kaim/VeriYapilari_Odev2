@@ -53,9 +53,9 @@ void Kontrol::bolunmeKontrol()//mutasyon kontrolü
                 {
                     for (int k = 0; k < dokudizisi[j]->hucreSayiAdedi; k++)
                     {
-                        if (dokudizisi[j]->dizi[k].veri % 2 == 0)
+                        if (dokudizisi[j]->dizi[k].veri % 2 == 0)//mutasyona uğrayan hücreler
                         {
-                            dokudizisi[j]->dizi[k].veri = dokudizisi[j]->dizi[k].veri / 2;
+                            dokudizisi[j]->dizi[k].veri = dokudizisi[j]->dizi[k].veri / 2;//ilgili hücrelere mutasyon işlemi(yarıya bölme)
                         }
                     }
                 }
